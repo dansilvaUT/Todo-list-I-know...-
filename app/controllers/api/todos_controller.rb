@@ -2,10 +2,10 @@ module Api
     class TodosController < ApplicationController
 
         def create_todo
-            todo = Todo.new(todo_params)
+            @todo = Todo.new(todo_params)
 
-            if todo.save
-                render json: { status: 200, message: "Todo created successfully", todo: todo }
+            if @todo.save
+                render json: { status: 200, message: "Todo created successfully", todo: @todo }
             else
                 render json: { status: 500, message: "Something went wrong" }
             end
