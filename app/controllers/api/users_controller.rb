@@ -1,6 +1,6 @@
 module Api
     class UsersController < ApplicationController
-
+        #TODO: Remove password key sending user info to client
         def create_user
             @user = User.new(user_params)
           

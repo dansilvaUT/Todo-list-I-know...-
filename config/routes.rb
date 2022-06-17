@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     #Sessions
-    resources :sessions, only: [:create, :destroy]
+    post "/login", to: "sessions#create_session"
+    post "/logout", to: "sessions#destroy_session"
+    get "/logged_in", to: "sessions#is_logged_in?"
     #Users
     post "/users", to: "users#create_user"
     get "/users/:id", to: "users#show_user"
