@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   root "static#index"
 
   namespace :api do
+    #Sessions
+    resources :sessions, only: [:create, :destroy]
+    #Users
+    post "/users", to: "users#create_user"
+    get "/users/:id", to: "users#show_user"
     #Todos
     post :create_todo, to: "todos#create_todo"
   end
