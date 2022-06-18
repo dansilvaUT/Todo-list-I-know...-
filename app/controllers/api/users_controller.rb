@@ -1,6 +1,7 @@
 module Api
     class UsersController < ApplicationController
         #TODO: Remove password key sending user info to client
+        #TODO: Add Edit methods
         def create_user
             @user = User.new(user_params)
           
@@ -13,7 +14,6 @@ module Api
         
         def show_user
             @user = User.find_by_id params[:id]
-
             if @user
                 render json: { status: 200, message: "User found", user: @user } 
             else

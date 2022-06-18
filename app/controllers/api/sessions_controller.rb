@@ -2,7 +2,7 @@ module Api
     class SessionsController < ApplicationController
         #TODO: Remove password key sending user info to client
         def create_session
-            @user = User.find_by(email: session_params[:email])
+            @user = User.find_by(username: session_params[:username])
 
             if @user && @user.authenticate(session_params[:password])
                 login!
@@ -31,7 +31,7 @@ module Api
         private
 
         def session_params
-            params.require(:session).permit(:email, :password)
+            params.require(:session).permit(:username, :password)
         end
     end
 end
