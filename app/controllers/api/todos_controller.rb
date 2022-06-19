@@ -1,7 +1,8 @@
 module Api
     class TodosController < ApplicationController
-        before_action :authorized_user?
-
+        before_action :logged_in_user
+        before_action :authorized_user?, only: [:update_todo, :destroy_todo]
+        
         def index
             @todo = Todo.all
             if !@todo.empty?

@@ -6,7 +6,7 @@ module Api
 
             if @user && @user.authenticate(session_params[:password])
                 login!
-                render json: { logged_in: true, user: @user }
+                render json: { logged_in: true, user: @user.attributes.except("password_digest") }
             else
                 render json: { status: 401, message: "No user exists with credentials provided" }
             end
@@ -14,8 +14,8 @@ module Api
         end
 
         def is_logged_in?
-            if logged_in? && current_user
-                render json: { logged_in: true, user: current_user }
+            if logged_in && current_user
+                render json: { logged_in: true, user: current_user.attributes.except("password_digest") }
             else
                 render json: { logged_in: false, message: "No user logged in"}
             end

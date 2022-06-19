@@ -23,4 +23,10 @@ module UserModule
         @user = User.find_by(id: session[:user_id])
     end
 
+    def logged_in_user
+        unless logged_in?
+            render json: { status: 401, message: "You need to be logged in" }
+        end
+    end
+
 end
