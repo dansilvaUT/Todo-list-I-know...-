@@ -1,0 +1,16 @@
+@import "../../main";
+
+.Landing {
+  background-color: $blue;
+  margin-top: 200px;
+  height: 50vh;
+  @include flex-row;
+
+  h1 {
+    text-align: center;
+  }
+
+  .Summit {
+    background-color: $green;
+  }
+}

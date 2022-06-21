@@ -3,3 +3,9 @@ $blue: #345995;
 $green: #03cea4;
 $orange: #fb4d3d;
 $maroon: #ca1551;
+
+@mixin flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
