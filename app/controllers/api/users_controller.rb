@@ -14,7 +14,7 @@ module Api
         def show_user
             @user = User.find_by_id params[:id]
             if @user
-                render json: { status: 200, message: "User found", user: @user.attributes.except("password_digest") } } 
+                render json: { status: 200, message: "User found", user: @user.attributes.except("password_digest") }
             else
                 render json: { status: 404, message: "User not found" }
             end
