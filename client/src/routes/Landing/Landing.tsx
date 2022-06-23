@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
+import Alert from "react-bootstrap/Alert";
 import "./Landing.scss";
 
 const Landing = () => {
@@ -15,7 +16,8 @@ const Landing = () => {
     firstName: "",
     lastName: "",
   });
-  const [error, setError] = useState("");
+  const [isError, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [toggleView, setToggleView] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -32,9 +34,13 @@ const Landing = () => {
       if (response.data.user) {
         console.log(response);
       }
+
+      console.log(response);
       //TODO: Set up Context and redirect to dashboard
     } catch (error: any) {
       console.log(error);
+      setError(true);
+      setErrorMsg(error.response.data.message);
     }
   };
 
@@ -50,19 +56,20 @@ const Landing = () => {
       },
     });
     //TODO: Set up Context and redirect to dashboard
-    console.log(response);
     try {
     } catch (error: any) {
       console.log(error);
+      setError(true);
+      setErrorMsg(error.response.data.message);
     }
   };
 
-  console.log(toggleView);
   return (
     <Container className="Landing">
       <Row className="justify-content-md-center">
         <h1>ToDo App</h1>
-        <Col>
+        <Col md={12}>
+          {isError && <Alert variant="danger">{errorMsg}</Alert>}
           <Form
             onSubmit={
               toggleView ? (e) => handleSignUp(e) : (e) => handleSignIn(e)
@@ -127,9 +134,11 @@ const Landing = () => {
               Sign In
             </Button>
             <p>
-              Don't have an account?{" "}
+              {toggleView
+                ? "Don't have an account?"
+                : "Already have an account?"}{" "}
               <span onClick={() => setToggleView(!toggleView)}>
-                {toggleView ? "Sign Up" : "Sign In"}
+                {toggleView ? "Sign In" : "Sign Up"}
               </span>
             </p>
           </Form>

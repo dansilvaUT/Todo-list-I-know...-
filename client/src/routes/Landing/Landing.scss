@@ -2,8 +2,8 @@
 
 .Landing {
   background-color: $blue;
-  margin-top: 200px;
-  height: 50vh;
+  margin-top: 50px;
+  height: 80vh;
   @include flex-row;
 
   h1 {
@@ -12,5 +12,14 @@
 
   .Summit {
     background-color: $green;
+  }
+
+  span {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  span:hover {
+    color: white;
   }
 }
