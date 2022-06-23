@@ -1,6 +1,5 @@
 module Api
     class SessionsController < ApplicationController
-        #TODO: Remove password key sending user info to client
         def create_session
             @user = User.find_by(username: session_params[:username])
 
@@ -8,7 +7,7 @@ module Api
                 login!
                 render json: { logged_in: true, user: @user.attributes.except("password_digest") }
             else
-                render json: { status: 401, message: "No user exists with credentials provided" }
+                render json: { status: 404, message: "No user exists with credentials provided" }, status: 404
             end
 
         end
