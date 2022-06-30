@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
+import { useNavigate } from "react-router-dom";
 import "./Landing.scss";
 
 const Landing = () => {
@@ -19,6 +20,7 @@ const Landing = () => {
   const [isError, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [toggleView, setToggleView] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -32,7 +34,7 @@ const Landing = () => {
         password: user.password,
       });
       if (response.data.user) {
-        console.log(response);
+        navigate("/dashboard");
       }
 
       console.log(response);

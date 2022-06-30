@@ -13,7 +13,7 @@ module Api
         end
 
         def is_logged_in?
-            if logged_in && current_user
+            if logged_in? && current_user
                 render json: { logged_in: true, user: current_user.attributes.except("password_digest") }
             else
                 render json: { logged_in: false, message: "No user logged in"}

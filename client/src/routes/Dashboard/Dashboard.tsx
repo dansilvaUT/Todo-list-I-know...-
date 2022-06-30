@@ -1,5 +1,12 @@
+import NavComponent from "../../components/Nav/NavComponent";
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <NavComponent />
+      Dashboard
+    </div>
+  );
 };
 
 export default Dashboard;
