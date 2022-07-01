@@ -2,17 +2,19 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import { UserContext } from "../../context/UserProvider";
-import { useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const NavComponent = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
-  if (!Boolean(user)) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (!Boolean(user)) {
+      navigate("/");
+    }
+  }, [navigate, user]);
 
   const logout = () => {
     axios.post("/api/logout").then((res) => console.log(res));

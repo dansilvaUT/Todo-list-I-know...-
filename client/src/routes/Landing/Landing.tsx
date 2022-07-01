@@ -36,9 +36,6 @@ const Landing = () => {
       if (response.data.user) {
         navigate("/dashboard");
       }
-
-      console.log(response);
-      //TODO: Set up Context and redirect to dashboard
     } catch (error: any) {
       console.log(error);
       setError(true);
@@ -57,7 +54,9 @@ const Landing = () => {
         last_name: user.lastName,
       },
     });
-    //TODO: Set up Context and redirect to dashboard
+    if (response.data.user) {
+      navigate("/dashboard");
+    }
     try {
     } catch (error: any) {
       console.log(error);
