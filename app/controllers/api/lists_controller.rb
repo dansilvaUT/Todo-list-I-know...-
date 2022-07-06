@@ -14,7 +14,7 @@ module Api
 
         def create_list
             @list = List.new(list_params)
-
+            puts "HIT #{@list}"
             if @list.save
                 render json: { status: 201, message: "List created", list: @list }
             else

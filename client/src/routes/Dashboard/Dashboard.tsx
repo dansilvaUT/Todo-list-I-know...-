@@ -1,3 +1,4 @@
+import { useState } from "react";
 import NavComponent from "../../components/Nav/NavComponent";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
@@ -5,8 +6,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import List from "../../components/Lists/List";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   return (
     <>
       <NavComponent />
@@ -25,13 +30,18 @@ const Dashboard = () => {
           </Col>
           <Col>
             <ButtonGroup size="lg" className="mb-2">
-              <Button>My Lists</Button>
-              <Button>New List</Button>
+              <Button onClick={() => setModalOpen(!isModalOpen)}>
+                New List
+              </Button>
+              <Button>
+                <Link to="/userLists">My Lists</Link>
+              </Button>
               <Button>Right</Button>
             </ButtonGroup>
           </Col>
         </Row>
       </Container>
+      <List show={isModalOpen} onClose={() => setModalOpen(!isModalOpen)} />
     </>
   );
 };

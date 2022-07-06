@@ -12,6 +12,7 @@ interface UserContextInterface {
 
 type User = {
   username?: string;
+  id?: number;
 };
 
 const defaultState = { user: {}, setUser: () => {} };
