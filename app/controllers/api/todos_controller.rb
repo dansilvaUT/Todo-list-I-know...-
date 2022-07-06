@@ -12,6 +12,16 @@ module Api
             end
         end
 
+        def get_todos_by_list
+            @todo = Todo.where(lists_id: params[:id])
+
+            if !@todo.empty?
+                render json: { status: 200, todos: @todo }
+            else
+                render json: { status: 401, message: "No todos found for that list" }
+            end
+        end
+
         def create_todo
             @todo = Todo.new(todo_params)
             if @todo.save
@@ -53,7 +63,7 @@ module Api
         private
 
         def todo_params
-            params.require(:todo).permit(:title, :description, :due_date, :completed, :user_id, :id)
+            params.require(:todo).permit(:title, :description, :due_date, :lists_id, :completed, :user_id, :id)
         end
     end
 end
