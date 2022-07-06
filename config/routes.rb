@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     #Users
     post "/users", to: "users#create_user"
     get "/users/:id", to: "users#show_user"
+    #Lists
+    post :create_list, to: "lists#create_list"
+    put "update_list/:id", to: "lists#update_list"
+    delete "destroy_list/:id", to: "lists#destroy_list"
+    get :lists, to: "lists#index"
     #Todos
     get :todos, to: "todos#index"
     post :create_todo, to: "todos#create_todo"
