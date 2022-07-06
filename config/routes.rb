@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     put "complete_todo/:id", to: "todos#complete_todo"
     delete "destroy_todo/:id", to: "todos#destroy_todo"
     put "update_todo/:id", to: "todos#update_todo"
+    get "get_todos_by_list/:id", to: "todos#get_todos_by_list"
 
   end
 end
