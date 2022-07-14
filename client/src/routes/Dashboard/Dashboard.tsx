@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import List from "../../components/Lists/List";
+import List from "../../components/Lists/Lists";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
