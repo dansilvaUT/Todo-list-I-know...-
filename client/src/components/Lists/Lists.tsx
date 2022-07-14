@@ -6,7 +6,7 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../context/UserProvider";
 import Alert from "react-bootstrap/Alert";
 
-const List = ({ onClose, show }: { onClose: Function; show: boolean }) => {
+const Lists = ({ onClose, show }: { onClose: Function; show: boolean }) => {
   //TODO: Disabled create Todo while request is being made
   // Update message to close modal
   const [listName, setListName] = useState("");
@@ -80,4 +80,4 @@ const List = ({ onClose, show }: { onClose: Function; show: boolean }) => {
   );
 };
 
-export default List;
+export default Lists;
