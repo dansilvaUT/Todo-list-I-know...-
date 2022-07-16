@@ -12,8 +12,11 @@ const ListView = () => {
   const [todo, setTodo] = useState<number>(0);
 
   useEffect(() => {
-    axios.get("/api/lists").then((res) => setLists(res.data.lists));
+    axios.get("/api/lists").then((res) => {
+      setLists(res.data.lists);
+    });
   }, []);
+
   const renderList = () => {
     return (
       <ListGroup>

@@ -7,8 +7,8 @@ import { UserContext } from "../../context/UserProvider";
 import Alert from "react-bootstrap/Alert";
 
 const Lists = ({ onClose, show }: { onClose: Function; show: boolean }) => {
-  //TODO: Disabled create Todo while request is being made
-  // Update message to close modal
+  const [disabled, setDisabled] = useState(false);
+
   const [listName, setListName] = useState("");
   const [success, setSuccess] = useState(false);
   const { user } = useContext(UserContext);
@@ -21,6 +21,7 @@ const Lists = ({ onClose, show }: { onClose: Function; show: boolean }) => {
 
   const handleListNameSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    setDisabled(true);
     try {
       const response = await axios.post("/api/create_list", {
         name: listName,
@@ -29,10 +30,13 @@ const Lists = ({ onClose, show }: { onClose: Function; show: boolean }) => {
 
       if (response.data.list) {
         setSuccess(true);
+        setDisabled(false);
+        setListName("");
       }
     } catch (error: any) {
       console.log(error);
       setSuccess(false);
+      setDisabled(false);
     }
   };
 
@@ -60,7 +64,7 @@ const Lists = ({ onClose, show }: { onClose: Function; show: boolean }) => {
               value={listName}
             />
           </Form.Group>
-          <Button variant="success" type="submit">
+          <Button variant="success" type="submit" disabled={disabled}>
             Create List
           </Button>
         </Form>
