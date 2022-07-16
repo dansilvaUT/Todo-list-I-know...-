@@ -4,9 +4,9 @@ module Api
 
         def index
             @list = List.where(user_id: current_user.id)
-
+            
             if @list
-                render json: { status: 200, lists: @list }
+                render json: { status: 200, lists: @list, count: @todos }
             else
                 render json: { status: 500, message: "Something went wrong" }
             end
@@ -14,7 +14,7 @@ module Api
 
         def create_list
             @list = List.new(list_params)
-            puts "HIT #{@list}"
+
             if @list.save
                 render json: { status: 201, message: "List created", list: @list }
             else
