@@ -6,7 +6,7 @@ module Api
             @list = List.where(user_id: current_user.id)
             
             if @list
-                render json: { status: 200, lists: @list, count: @todos }
+                render json: { status: 200, lists: @list }
             else
                 render json: { status: 500, message: "Something went wrong" }
             end

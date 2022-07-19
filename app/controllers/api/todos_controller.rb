@@ -16,7 +16,7 @@ module Api
             @todo = Todo.where(lists_id: params[:id])
 
             if !@todo.empty?
-                render json: { status: 200, todos: @todo }
+                render json: { status: 200, todos: @todo, count: @todo.count }
             else
                 render json: { status: 401, message: "No todos found for that list" }
             end

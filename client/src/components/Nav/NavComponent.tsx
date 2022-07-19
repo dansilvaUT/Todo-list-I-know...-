@@ -20,7 +20,6 @@ const NavComponent = () => {
     axios.post("/api/logout").then((res) => console.log(res));
     navigate("/");
   };
-
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
       <Container>
